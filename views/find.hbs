@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Your Fav Book</title>
+</head>
+<body bgcolor="black">
+    {{#each al as |a|}}
+    <center><div class="card" >
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img class="card-img-top" src="{{a.sr}}"   >
+        <div class="card-body">
+            <font size="5" class="card-title">Name:{{a.title}}</font><br>
+            <font size="5" class="card-text">Author:{{a.author}}</font><br>
+            <font size="5" class="card-text">Genre:{{a.genre}}</font><br>
+            <font size="5" class="card-text">Edition:{{a.edition}}</font><br><br>
+            <a href="{{a.Url}}" ><font size="6" class="bb"> Buy</font> </a>
+            
+        </div>
+    </div></center>
+    {{/each}}
+</body>
+</html>
+<style>
+    .card{
+        width: 9cm;
+        height: 11cm;
+        background-color: orangered;
+        
+    }
+    .card-img-top{
+        width: 9cm;
+        height: 4cm;
+        
+    }
+
+    .bb{
+        size: 1cm;
+        transform: translate(30px,30px)
+        position:relative;
+    }
+</style>
