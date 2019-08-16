@@ -20,6 +20,9 @@
       <li class="nav-item">
         <a class="nav-link" href="/1">Books Available</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="/contact">Contact Us</a>
+      </li>
     </ul>
 
     <ul class="nav navbar-nav ml-auto">
@@ -27,8 +30,9 @@
         <a class="nav-link" href="/signup"><span class="fas fa-user"></span> Sign Up</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="/login"><span class="fas fa-sign-in-alt"></span> Login</a>
+        <a class="nav-link" id="logout" href="/logout"><span class="fas fa-sign-in-alt"></span> Logout</a>
       </li>
+      
     </ul>
     <form class="form-inline my-2 my-lg-0" action="/" method="POST">
       <input id="se" class="form-control mr-sm-2" name="but" type="search" placeholder="Search" aria-label="Search" required>
@@ -37,10 +41,65 @@
   </div>
 </nav> 
 <body>
- <br><br><br><br><br><br><br><br><br> <p><font size="23" color="red"><center><b>A great eye for <br>good books.</b></center></font></p>
+ <br><br><p><font size="23" color="black"><center><b>A great eye for <br>good books.</b></center></font></p>
 </body>
+<header>
+  <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner" role="listbox">
+      <!-- Slide One - Set the background image for this slide in the line below -->
+      <div class="carousel-item active" style="background-image: url('https://source.unsplash.com/RCAhiGJsUUE/1920x1080')">
+        <div class="carousel-caption d-none d-md-block">
+          <h3 class="display-4">Welcome</h3>
+          <p class="lead">Hope you have a great experience using our book-cart.</p>
+        </div>
+      </div>
+      <!-- Slide Two - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url('https://source.unsplash.com/wfh8dDlNFOk/1920x1080')">
+        <div class="carousel-caption d-none d-md-block">
+          <h3 class="display-4">Books are humans best-friend.</h3>
+          <p class="lead">Find books of your interest.</p>
+        </div>
+      </div>
+      <!-- Slide Three - Set the background image for this slide in the line below -->
+      <div class="carousel-item" style="background-image: url('https://source.unsplash.com/O7fzqFEfLlo/1920x1080')">
+        <div class="carousel-caption d-none d-md-block">
+          <h3 class="display-4">Think we missed out some books??</h3>
+          <p class="lead">Contact Us!!!!!!!</p>
+        </div>
+      </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+  </div>
+</header>
 <style>
     body {
         background-image: url("https://miro.medium.com/max/1838/1*Cbj_BcK5ePD4Mc4TK4sfvQ.jpeg")
     }
+    #carouselExampleIndicators{
+  transform: translate(0cm,5cm);
+  position: relative;
+}
+.carousel-item {
+  height: 5cm;
+  min-height: 1cm;
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  
+}
 </style>
+<script src="main.js"></script>

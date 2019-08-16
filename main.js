@@ -6,8 +6,15 @@ const LocalStrategy = require('passport-local').Strategy
 const passport = require('passport')
 const session = require('express-session')
 const flash = require('express-flash')
+const path = require('path')
+const socketio = require('socket.io')
+const http = require('http')
+const server = http.createServer(app)
+const io = socketio(server)
+var GitHubStrategy = require('passport-github').Strategy;
 
 
+//passport
 app.use(session({
     secret: 'averylongstring',
     resave: false,
@@ -23,17 +30,30 @@ app.use(passport.session())
 
 app.set('view engine', 'hbs')
 
+app.use(express.static('public'))
+
 app.use(express.json())
 
 app.use(express.urlencoded({ extended: true }))
 
-app.use(flash())
+app.get('/login', (req, res) => {
+    res.render('login')
+})
+
 
 app.post('/login', passport.authenticate('local', {
-    successRedirect: '/',
     failureRedirect: '/login',
-    failureFlash: true
-}))
+   }),(req,res)=>{
+    if(req.body.username=="Gaurav" && req.body.password=="gaurav")
+    {
+        res.redirect('/admin')
+    }
+    else{
+        res.redirect('/')
+    }
+    /*var p = req.body.Username;
+    console.log(p)*/
+})
 
 
 passport.serializeUser(function (user, done) {
@@ -78,10 +98,6 @@ passport.use('local', new LocalStrategy(function (username, password, done) {
     }).catch(done)
 }))
 
-app.get('/login', (req, res) => {
-    res.render('login')
-})
-
 
 
 app.get('/signup', (req, res) => {
@@ -97,6 +113,14 @@ app.post('/signup', (req, res) => {
     })
 })
 
+app.get('/admin',(req,res)=>{
+    if(req.user.Username=="Gaurav" && req.user.password=="gaurav")
+           {res.render('admin')}
+           else{res.redirect('/')}
+})
+
+//normal part
+
 app.get('/', (req, res) => {
     if (req.user) {
         res.render('front')
@@ -106,7 +130,24 @@ app.get('/', (req, res) => {
 })
 
 app.get('/delete', (req, res) => {
+    if(req.user.Username=="Gaurav" && req.user.password=="gaurav")
+    {
     res.render('delete')
+}
+else
+{
+res.redirect('/login')
+}
+})
+
+app.post('/delete', (req, res) => {
+    Books.destroy({
+        where: {
+            title: req.body.titl,
+        }
+    }).then(() => {
+        res.redirect('/delete')
+    })
 })
 
 app.get('/1', (req, res) => {
@@ -151,25 +192,64 @@ app.post('/add', (req, res) => {
     })
 })
 
-app.post('/delete', (req, res) => {
-    Books.destroy({
-        where: {
-            title: req.body.titl,
-        }
-    }).then(() => {
-        res.redirect('/delete')
-    })
-})
+
 
 app.get('/add', (req, res) => {
+    if(req.user.Username=="Gaurav" && req.user.password=="gaurav")
+    {
     Books.findAll().then((el) => {
         const al = el
         res.render('add', { al })
-    })
+    })}
+    else{res.redirect('/login')}
 })
 
+app.get('/logout',(req,res)=>{
+    req.session.destroy()
+    res.redirect('/login')
+})
+
+/*app.use('/contact',(req,res)=>{
+    if(req.user)
+   res.render('contact')
+    
+    else{res.send("Not an Authorised User")}
+})*/
+
+// socket part
+
+app.get('/contact', (req, res) => {
+    if(req.user)
+    res.render('index')
+    else{res.redirect('/login')}
+
+})
+
+
+//listen on every connection
+io.on('connection', (socket) => {
+	console.log('New user connected')
+
+	//default username
+	socket.username = "p"
+
+    //listen on change_username
+    socket.on('change_username', (data) => {
+        socket.username = data.username
+    })
+
+    //listen on new_message
+    socket.on('new_message', (data) => {
+        //broadcast the new message
+        io.sockets.emit('new_message', {message : data.message, username : socket.username});
+    })
+
+   
+})
+
+
 sequelize.sync().then(() => {
-    app.listen(3000, () => {
+    server.listen(3000, () => {
         console.log("Successfully Created")
     })
 })
