@@ -6,14 +6,22 @@ const sequelize = new Sequelize({
 })
 
 const Users= sequelize.define('users',{
+    id:{
+        type:Sequelize.INTEGER,
+        autoIncrement:true,
+        primaryKey:true,
+        max:10,
+        min:1
+
+    },
     Username:{
         type:Sequelize.STRING,
-        primaryKey:true,
+        
     
     },
     password:{
         type:Sequelize.STRING,
-        allowNull:false,
+        allowNull:true,
     },
 
 })

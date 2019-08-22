@@ -17,6 +17,7 @@
     "hbs": "^4.0.4",
     "passport": "^0.4.0",
     "passport-github": "^1.1.0",
+    "passport-github2": "^0.1.11",
     "passport-local": "^1.0.0",
     "sequelize": "^5.12.3",
     "socket.io": "^2.2.0",
