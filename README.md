@@ -1,7 +1,9 @@
 # Web-Dev-Project
 Online-Book-Cart  By-Gaurav Guleria
 
-#Introduction The project is basically an Online-Book-Search-Cart.It will help the user to search about various books and provide information related to those books like author,genre,edition and would also provide the user a link to buy that particular book online. The project also provides the user with a chat window through which the user can ask to add information about the books he/she want to get added if the book is not available.
+#Introduction The project is basically an Online-Book-Search-Cart.It will help the user to search about various books and provide information related to those books like author,genre,edition and would also provide the user a link to buy that particular book online. 
+
+The project also provides the user with a chat window through which the user can ask to add information about the books he/she want to get added if the book is not available.
 
 #Requirements
 
