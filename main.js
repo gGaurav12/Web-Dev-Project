@@ -1,17 +1,16 @@
 const express = require('express')
 const app = express()
-//const hbs = require('hbs')
+const hbs = require('hbs')
 let { Books, Users, sequelize } = require('./db')
 const LocalStrategy = require('passport-local').Strategy
 const passport = require('passport')
 const session = require('express-session')
-const flash = require('express-flash')
 const path = require('path')
-const socketio = require('socket.io')
 const http = require('http')
 const server = http.createServer(app)
+const socketio = require('socket.io')
 const io = socketio(server)
-var GitHubStrategy = require('passport-github').Strategy;
+const GitHubStrategy = require('passport-github').Strategy;
 
 
 //passport
@@ -23,6 +22,7 @@ app.use(session({
         maxAge: 60 * 60 * 1000,
     },
 }))
+
 
 app.use(passport.initialize())
 
@@ -51,30 +51,9 @@ app.post('/login', passport.authenticate('local', {
     else{
         res.redirect('/')
     }
-    /*var p = req.body.Username;
-    console.log(p)*/
+    
 })
 
-
-passport.serializeUser(function (user, done) {
-    done(null, user.Username)
-})
-
-passport.deserializeUser(function (Username, done) {
-    Users.findOne({
-        where: {
-            Username: Username,
-        }
-    }).then((user) => {
-        if (!user) {
-            return done(new Error("No such user"))
-
-        }
-        return done(null, user)
-    }).catch((err) => {
-        done(err)
-    })
-})
 
 passport.use('local', new LocalStrategy(function (username, password, done) {
     Users.findOne({
@@ -98,7 +77,46 @@ passport.use('local', new LocalStrategy(function (username, password, done) {
     }).catch(done)
 }))
 
+app.get('/login/github',
+  passport.authenticate('github'))
+     
+ 
 
+
+app.get('/login/github/callback', 
+  passport.authenticate('github', { failureRedirect: '/login' }),
+  function(req, res) {
+    
+    res.redirect('/');
+  });
+
+passport.use(new GitHubStrategy({
+    clientID:  "Iv1.f83d82dc94df9b29",
+    clientSecret:  "46f03e20279d67edbb3d4efb9f50f77601e559e5",
+    callbackURL: "http://localhost:3000/login/github/callback"
+  },
+  (accessToken, refreshToken, profile, done)=> {
+    Users.findCreateFind({ 
+        where:{Username: profile.id },
+    defaults:{
+        Username: profile.id,
+        ghAccessToken:accessToken,
+    }
+    
+    }).then((user)=>{
+        //console.log(profile)
+        done(null,profile)
+    }).catch(done)
+  }))
+
+  passport.serializeUser(function (user, done) {
+    done(null, user)
+})
+
+passport.deserializeUser(function (user, done) {
+       done(null, user)
+       console.log(user)
+})
 
 app.get('/signup', (req, res) => {
     res.render('sign')
@@ -228,7 +246,8 @@ app.get('/contact', (req, res) => {
 
 //listen on every connection
 io.on('connection', (socket) => {
-	console.log('New user connected')
+    console.log('New user connected')
+    //console.log(socket)
 
 	//default username
 	socket.username = "p"
@@ -253,8 +272,3 @@ sequelize.sync().then(() => {
         console.log("Successfully Created")
     })
 })
-/* Users.sync().then((
-
-) => {
-    console.log("Users created")
-}) */
