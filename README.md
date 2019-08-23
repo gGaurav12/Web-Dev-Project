@@ -40,15 +40,15 @@
 
 **Requirements**
 
-*The dependencies specified in the `package.json` file must be installed before starting the server.
+*The dependencies specified in the `package.json` file must be installed before starting the server.*
 
 **Installation**
 
-*The above all module can be installed by just typing the following syntax in the node.js terminal
+*The above all module can be installed by just typing the following syntax in the node.js terminal*
 
-*Syntax- `npm i "module name"`
+*Syntax- `npm i "module name"`*
 
-*Example npm i express
+*Example npm i express*
 
 **Run Server**
 
@@ -56,10 +56,10 @@
 
 **Concepts Included**
 
-*hbs:a template engine to simplify the production of HTML
+*hbs:a template engine to simplify the production of HTML*
 
-*Passport(Local and github Stratergies)-To provide authentiation to the users
+*Passport(Local and github Stratergies)-To provide authentiation to the users*
 
-*Socket.io- Famous package that manage WebSockets
+*Socket.io- Famous package that manage WebSockets*
 
-*Sequelize- A database to store information
+*Sequelize- A database to store information*
