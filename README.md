@@ -1,7 +1,7 @@
 # Web-Dev-Project
 **Online-Book-Cart  By-Gaurav Guleria**
 
-**#Introduction**
+**Introduction**
 
 *The project is basically an Online-Book-Search-Cart.It will help the user to search about various books and provide information related to those books like author,genre,edition and would also provide the user a link to buy that particular book online.*
 
@@ -38,11 +38,11 @@
 `Github` 
 
 
-**#Requirements**
+**Requirements**
 
 *The dependencies specified in the `package.json` file must be installed before starting the server.
 
-**#Installation**
+**Installation**
 
 *The above all module can be installed by just typing the following syntax in the node.js terminal
 
@@ -54,7 +54,7 @@
 
 `npm start`
 
-**#Concepts Included**
+**Concepts Included**
 
 *hbs:a template engine to simplify the production of HTML
 
