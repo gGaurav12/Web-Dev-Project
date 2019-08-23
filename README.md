@@ -9,7 +9,7 @@
 
 **Version**
 
-1.0.0
+`1.0.0`
 
 **Routes**
 
@@ -34,24 +34,25 @@
 "/3"- Shows the information of a particular book that has been searched for.
 
 **Third-Part Authentications**
-Github
+
+`Github` 
 
 
 **#Requirements**
 
-*The dependencies specified in the package.json file must be installed before starting the server.
+*The dependencies specified in the `package.json` file must be installed before starting the server.
 
 **#Installation**
 
 *The above all module can be installed by just typing the following syntax in the node.js terminal
 
-*Syntax- npm i "module name"
+*Syntax- `npm i "module name"`
 
 *Example npm i express
 
 **Run Server**
 
-npm start
+`npm start`
 
 **#Concepts Included**
 
