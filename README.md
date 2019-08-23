@@ -29,7 +29,7 @@
 
 "/conatct"- The user can provide suggestions for improving the application.
 
-"/2"- ABout page about the application.
+"/2"- About page about the application.
 
 "/3"- Shows the information of a particular book that has been searched for.
 
