@@ -39,9 +39,7 @@ Github
 
 **#Requirements**
 
-*1.Node.js 2.Sqlite3
-
-*Following modules are required to be installed- *hbs *express *passport *socket.io
+*The dependencies specified in the package.json file must be installed before starting the server.
 
 **#Installation**
 
@@ -50,6 +48,10 @@ Github
 *Syntax- npm i "module name"
 
 *Example npm i express
+
+**Run Server**
+
+npm start
 
 **#Concepts Included**
 
