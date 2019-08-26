@@ -11,6 +11,7 @@ const server = http.createServer(app)
 const socketio = require('socket.io')
 const io = socketio(server)
 const GitHubStrategy = require('passport-github').Strategy;
+const PORT= process.env.PORT || 3000;
 
 
 //passport
@@ -268,7 +269,7 @@ io.on('connection', (socket) => {
 
 
 sequelize.sync().then(() => {
-    server.listen(3000, () => {
+    server.listen(PORT, () => {
         console.log("Successfully Created")
     })
 })
