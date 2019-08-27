@@ -11,6 +11,7 @@ const server = http.createServer(app)
 const socketio = require('socket.io')
 const io = socketio(server)
 const GitHubStrategy = require('passport-github').Strategy;
+const FacebookStrategy = require('passport-facebook').Strategy;
 const PORT= process.env.PORT || 3000;
 
 
@@ -110,6 +111,30 @@ passport.use(new GitHubStrategy({
     }).catch(done)
   }))
 
+  app.get('/login/facebook',
+  passport.authenticate('facebook'));
+
+app.get('/login/facebook/callback',
+  passport.authenticate('facebook', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
+  passport.use(new FacebookStrategy({
+    clientID: "1069266106612162",
+    clientSecret: "810e33bb32ed207980b23a22885ced52",
+    callbackURL: "http://localhost:3000/login/facebook/callback"
+  },
+  function(accessToken, refreshToken, profile, cb) {
+    Users.findCreateFind({ 
+        where:{
+            Username: profile.id
+        }}).then((user)=> {
+      return cb(null, user);
+    })}
+  
+))
   passport.serializeUser(function (user, done) {
     done(null, user)
 })
