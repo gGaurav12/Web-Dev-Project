@@ -95,7 +95,7 @@ app.get('/login/github/callback',
 passport.use(new GitHubStrategy({
     clientID:  "Iv1.f83d82dc94df9b29",
     clientSecret:  "46f03e20279d67edbb3d4efb9f50f77601e559e5",
-    callbackURL: "http://localhost:3000/login/github/callback"
+    callbackURL: "http://online-book-cart-gaurav.herokuapp.com/login/github/callback"
   },
   (accessToken, refreshToken, profile, done)=> {
     Users.findCreateFind({ 
@@ -124,7 +124,7 @@ app.get('/login/facebook/callback',
   passport.use(new FacebookStrategy({
     clientID: "1069266106612162",
     clientSecret: "810e33bb32ed207980b23a22885ced52",
-    callbackURL: "http://localhost:3000/login/facebook/callback"
+    callbackURL: "http://online-book-cart-gaurav.herokuapp.com/login/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
     Users.findCreateFind({ 
