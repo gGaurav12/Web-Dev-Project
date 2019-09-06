@@ -124,7 +124,7 @@ app.get('/login/facebook/callback',
   passport.use(new FacebookStrategy({
     clientID: "1069266106612162",
     clientSecret: "810e33bb32ed207980b23a22885ced52",
-    callbackURL: "http://online-book-cart-gaurav.herokuapp.com/login/facebook/callback"
+    callbackURL: "https://online-book-cart-gaurav.herokuapp.com/login/facebook/callback"
   },
   function(accessToken, refreshToken, profile, cb) {
     Users.findCreateFind({ 
