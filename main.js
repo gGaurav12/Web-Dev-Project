@@ -12,6 +12,7 @@ const socketio = require('socket.io')
 const io = socketio(server)
 const GitHubStrategy = require('passport-github').Strategy;
 const FacebookStrategy = require('passport-facebook').Strategy;
+const messagebird = require('messagebird')
 const PORT= process.env.PORT || 3000;
 
 
@@ -157,11 +158,17 @@ app.post('/signup', (req, res) => {
     })
 })
 
+
+
 app.get('/admin',(req,res)=>{
     if(req.user.Username=="Gaurav" && req.user.password=="gaurav")
            {res.render('admin')}
            else{res.redirect('/')}
 })
+
+//otp verification
+
+
 
 //normal part
 
